@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 Personal Notes Application
 
-## Getting Started
+A modern Notes Application built using Next.js (App Router) with AI-assisted UI development and structured project architecture.
 
-First, run the development server:
+🚀 Overview
 
-```bash
+This project was developed as part of an AI-driven development workflow workshop.
+
+It demonstrates:
+
+UI generation using Stitch
+
+MCP configuration for AI tool integration
+
+Code refinement using GitHub Copilot
+
+Modern frontend architecture with Next.js
+
+The application allows users to create, edit, delete, and manage notes in a clean and responsive interface.
+
+🛠 Tech Stack
+
+Next.js (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+LocalStorage for client-side persistence
+
+Git & GitHub for version control
+
+✨ Features
+
+Create new notes
+
+Edit existing notes
+
+Delete notes
+
+Persistent storage using browser localStorage
+
+Dark-themed UI
+
+Responsive layout
+
+Modular component structure
+
+Clean project organization
+
+📂 Project Structure
+app/              → Application routing and pages
+components/       → Reusable UI components
+lib/              → Utility/helper functions
+public/           → Static assets
+📦 Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/Udhayakumar26/Personal-notes-application.git
+2️⃣ Navigate into the project folder
+cd Personal-notes-application
+3️⃣ Install dependencies
+npm install
+4️⃣ Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+5️⃣ Open in browser
+http://localhost:3000
+🧠 Development Workflow
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project showcases a modern AI-assisted development process:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+UI scaffold generated using Stitch
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+MCP configuration for tool integration
 
-## Learn More
+Code refinement and modifications using GitHub Copilot
 
-To learn more about Next.js, take a look at the following resources:
+Manual improvements and structural cleanup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Version control and repository management using Git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📌 Notes
 
-## Deploy on Vercel
+This project uses client-side storage (localStorage).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+No backend database is currently integrated.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The focus is on frontend architecture and AI-assisted workflow integration.
+
+🚀 Future Improvements
+
+Backend integration (API + database)
+
+Authentication
+
+Markdown support
+
+Rich text editor
+
+Cloud persistence
+
+Deployment configuration
+
+📄 License
+
+This project is created for educational and workshop purposes.
+
+After replacing the README:
+
+Run:
+
+git add README.md
+git commit -m "Upgrade README with full project documentation"
+git push
