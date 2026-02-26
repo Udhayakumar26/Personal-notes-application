@@ -30,6 +30,7 @@ LocalStorage for client-side persistence
 
 Git & GitHub for version control
 
+
 ✨ Features
 
 Create new notes
@@ -48,11 +49,14 @@ Modular component structure
 
 Clean project organization
 
+
 📂 Project Structure
 app/              → Application routing and pages
 components/       → Reusable UI components
 lib/              → Utility/helper functions
 public/           → Static assets
+
+
 📦 Installation & Setup
 1️⃣ Clone the repository
 git clone https://github.com/Udhayakumar26/Personal-notes-application.git
