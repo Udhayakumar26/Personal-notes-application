@@ -1,9 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-// ─── Storage ──────────────────────────────────────────────────────────────────
 const STORAGE_KEY = "my_notes_data";
-
 function loadNotes() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -12,11 +10,9 @@ function loadNotes() {
     return getSampleNotes();
   }
 }
-
 function saveNotes(notes) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); } catch {}
 }
-
 function getSampleNotes() {
   return [
     { id: "1", title: "Weekly Sync", content: "# Meeting Notes - Discussed project roadmap and upcoming milestones for the Q4 release.", category: "Work", favorite: false, updatedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
@@ -26,7 +22,6 @@ function getSampleNotes() {
     { id: "5", title: "Draft: Blog Post", content: "# Why Minimalist Design Matters\nIn a world of constant digital noise, simplicity is the ultimate sophistication.", category: "Writing", favorite: true, updatedAt: new Date("2024-10-15").toISOString() },
   ];
 }
-
 function formatDate(iso) {
   const d = new Date(iso);
   const now = new Date();
@@ -37,11 +32,9 @@ function formatDate(iso) {
   if (diffD < 2) return "Yesterday";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase();
 }
-
 const CATEGORIES = ["Work", "Ideas", "Personal", "Daily", "Writing"];
 const CAT_COLORS = { Work: "#3b82f6", Ideas: "#eab308", Personal: "#f97316", Daily: "#22c55e", Writing: "#a855f7" };
 
-// ─── Theme tokens (all inline styles — 100% reliable, no Tailwind class conflicts) ──
 function theme(dark) {
   return {
     pageBg:      dark ? { background: "linear-gradient(to bottom, #0f172a, #020617)" } : { background: "#f8fafc" },
@@ -64,7 +57,6 @@ function theme(dark) {
   };
 }
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
 const Icons = {
   Notes: () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -134,7 +126,6 @@ const Icons = {
   ),
 };
 
-// ─── Note Editor ──────────────────────────────────────────────────────────────
 function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
@@ -142,15 +133,12 @@ function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
   const [favorite, setFavorite] = useState(note.favorite);
   const [showMenu, setShowMenu] = useState(false);
   const t = theme(dark);
-
   const handleSave = () => {
     onSave({ ...note, title, content, category, favorite, updatedAt: new Date().toISOString() });
   };
-
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", ...t.editorBg }}>
-
-      {/* Header */}
+      {}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 16px 16px", borderBottom: t.border }}>
         <button onClick={() => { handleSave(); onBack(); }}
           style={{ ...t.icon, padding: 8, borderRadius: 8, background: "transparent", border: "none", cursor: "pointer" }}>
@@ -178,8 +166,7 @@ function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
           </div>
         </div>
       </div>
-
-      {/* Category picker */}
+      {}
       <div style={{ display: "flex", gap: 8, padding: "12px 16px", overflowX: "auto", borderBottom: t.border }}>
         {CATEGORIES.map(cat => (
           <button key={cat} onClick={() => setCategory(cat)}
@@ -191,7 +178,6 @@ function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
           </button>
         ))}
       </div>
-
       {}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "16px 16px 0", gap: 12 }}>
         <input
@@ -207,11 +193,10 @@ function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
           style={{ flex: 1, background: "transparent", border: "none", outline: "none", resize: "none", fontSize: 14, lineHeight: 1.7, minHeight: "60vh", ...t.subtle }}
         />
       </div>
-
-      {/* Save button */}
-      <div style={{ padding: 16, borderTop: t.border }}>
+      {}
+      <div style={{ padding: 16, borderTop: t.border, display: "flex", justifyContent: "flex-end" }}>
         <button onClick={() => { handleSave(); onBack(); }}
-          style={{ width: "100%", padding: 12, background: "#4f46e5", color: "#ffffff", border: "none", borderRadius: 12, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+          style={{ padding: "10px 28px", background: "#4f46e5", color: "#ffffff", border: "none", borderRadius: 10, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
           Save Note
         </button>
       </div>
@@ -221,12 +206,10 @@ function NoteEditor({ note, onSave, onDelete, onBack, dark }) {
 
 function SettingsScreen({ onBack, onClearAll, dark, setDark }) {
   const t = theme(dark);
-
   return (
     <div style={{ minHeight: "100vh", ...t.pageBg, padding: "24px 16px" }}>
       <div style={{ maxWidth: 672, margin: "0 auto" }}>
-
-        {/* Header */}
+        {}
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
           <button onClick={onBack}
             style={{ ...t.icon, padding: 8, background: "transparent", border: "none", borderRadius: 8, cursor: "pointer" }}>
@@ -234,8 +217,7 @@ function SettingsScreen({ onBack, onClearAll, dark, setDark }) {
           </button>
           <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0, ...t.title }}>Settings</h1>
         </div>
-
-        {/* Appearance */}
+        {}
         <div style={{ ...t.settingCard, borderRadius: 16, padding: 16, marginBottom: 12 }}>
           <h2 style={{ fontWeight: 600, marginTop: 0, marginBottom: 12, ...t.sectionHead }}>Appearance</h2>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -247,14 +229,12 @@ function SettingsScreen({ onBack, onClearAll, dark, setDark }) {
             </button>
           </div>
         </div>
-
-        {/* About */}
+        {}
         <div style={{ ...t.settingCard, borderRadius: 16, padding: 16, marginBottom: 12 }}>
           <h2 style={{ fontWeight: 600, marginTop: 0, marginBottom: 4, ...t.sectionHead }}>About</h2>
           <p style={{ margin: 0, fontSize: 14, ...t.subtle }}>My Notes — v1.0.0</p>
         </div>
-
-        {/* Danger */}
+        {}
         <div style={{ background: "rgba(127,29,29,0.15)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 16, padding: 16 }}>
           <h2 style={{ fontWeight: 600, marginTop: 0, marginBottom: 8, color: "#f87171" }}>Danger Zone</h2>
           <p style={{ margin: "0 0 12px", fontSize: 14, ...t.subtle }}>This will permanently delete all your notes.</p>
@@ -269,7 +249,6 @@ function SettingsScreen({ onBack, onClearAll, dark, setDark }) {
   );
 }
 
-// ─── Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [notes, setNotes] = useState([]);
   const [screen, setScreen] = useState("list");
@@ -279,35 +258,28 @@ export default function App() {
   const [view, setView] = useState("notes");
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [dark, setDark] = useState(true);
-
   useEffect(() => { setNotes(loadNotes()); }, []);
-
   const persist = (updated) => { setNotes(updated); saveNotes(updated); };
-
   const createNote = () => {
     const note = { id: Date.now().toString(), title: "Untitled", content: "", category: "Personal", favorite: false, updatedAt: new Date().toISOString() };
     persist([note, ...notes]);
     setEditingNote(note);
     setScreen("editor");
   };
-
   const openNote = (note) => { setEditingNote(note); setScreen("editor"); };
   const saveNote = (updated) => persist(notes.map(n => n.id === updated.id ? updated : n));
   const deleteNote = (id) => persist(notes.filter(n => n.id !== id));
   const clearAll = () => persist([]);
   const toggleFavorite = (e, id) => { e.stopPropagation(); persist(notes.map(n => n.id === id ? { ...n, favorite: !n.favorite } : n)); };
   const handleDelete = (e, id) => { e.stopPropagation(); persist(notes.filter(n => n.id !== id)); };
-
   const filteredNotes = notes.filter(note => {
     const matchSearch = note.title.toLowerCase().includes(search.toLowerCase()) || note.content.toLowerCase().includes(search.toLowerCase());
     const matchFilter = filter === "All" || note.category === filter;
     const matchView = view === "notes" || (view === "favorites" && note.favorite) || (view === "folders" && (selectedFolder ? note.category === selectedFolder : true));
     return matchSearch && matchFilter && matchView;
   });
-
   const folders = Array.from(new Set(notes.map(n => n.category)));
   const t = theme(dark);
-
   if (screen === "editor" && editingNote) {
     return <NoteEditor note={editingNote} onSave={saveNote} onDelete={deleteNote} onBack={() => { setNotes(loadNotes()); setScreen("list"); }} dark={dark} />;
   }
@@ -315,12 +287,10 @@ export default function App() {
     return <SettingsScreen onBack={() => setScreen("list")} onClearAll={clearAll} dark={dark} setDark={setDark} />;
   }
 
-  // ── List Screen ──────────────────────────────────────────────────────────────
   return (
     <div style={{ minHeight: "100vh", ...t.pageBg }}>
       <div style={{ maxWidth: 672, margin: "0 auto", paddingBottom: 112 }}>
-
-        {/* Header */}
+        {}
         <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px 16px 16px" }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0, ...t.title }}>My Notes</h1>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -334,8 +304,7 @@ export default function App() {
             </button>
           </div>
         </header>
-
-        {/* Search */}
+        {}
         <div style={{ padding: "0 16px 16px" }}>
           <div style={{ position: "relative" }}>
             <span style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", ...t.subtle }}>
@@ -349,8 +318,7 @@ export default function App() {
             />
           </div>
         </div>
-
-        {/* Category Pills */}
+        {}
         <div style={{ display: "flex", gap: 8, padding: "0 16px 20px", overflowX: "auto" }}>
           {["All", ...CATEGORIES].map(cat => (
             <button key={cat} onClick={() => setFilter(cat)}
@@ -359,8 +327,7 @@ export default function App() {
             </button>
           ))}
         </div>
-
-        {/* Folder pills */}
+        {}
         {view === "folders" && (
           <div style={{ padding: "0 16px 16px" }}>
             <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", ...t.subtle }}>Folders</p>
@@ -381,15 +348,13 @@ export default function App() {
             </div>
           </div>
         )}
-
-        {/* View label */}
+        {}
         {view !== "notes" && (
           <p style={{ margin: "0 0 12px", padding: "0 16px", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", ...t.subtle }}>
             {view === "favorites" ? "⭐ Starred Notes" : "📁 Folders"}
           </p>
         )}
-
-        {/* Notes list */}
+        {}
         <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "0 16px" }}>
           {filteredNotes.length === 0 ? (
             <div style={{ textAlign: "center", padding: "64px 0", ...t.noteTitle }}>
@@ -428,14 +393,12 @@ export default function App() {
             </div>
           ))}
         </div>
-
-        {/* FAB */}
+        {}
         <button onClick={createNote}
           style={{ position: "fixed", bottom: 80, right: 24, width: 56, height: 56, background: "#4f46e5", color: "#ffffff", border: "none", borderRadius: "50%", fontSize: 28, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 24px rgba(79,70,229,0.4)", cursor: "pointer", zIndex: 10 }}>
           +
         </button>
-
-        {/* Bottom Nav */}
+        {}
         <nav style={{ position: "fixed", bottom: 0, left: 0, right: 0, display: "flex", zIndex: 10, ...t.navBg }}>
           {[
             { id: "notes",     label: "Notes",     Icon: Icons.Notes },
@@ -454,7 +417,6 @@ export default function App() {
             Settings
           </button>
         </nav>
-
       </div>
     </div>
   );
